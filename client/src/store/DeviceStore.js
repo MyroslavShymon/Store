@@ -2,54 +2,14 @@ import { makeAutoObservable } from "mobx";
 
 export default class DeviceStore {
   constructor() {
-    this._types = [
-      { id: 1, name: "Freages" },
-      { id: 2, name: "Smartphones" },
-    ];
-    this._brands = [
-      { id: 1, name: "Apple" },
-      { id: 2, name: "Sumsung" },
-      { id: 3, name: "LG" },
-    ];
-    this._devices = [
-      {
-        id: 1,
-        name: "IPhone 12 pro",
-        price: 25343,
-        rating: 5,
-        img: "../../../server/static/04b23981-ac64-4bb5-b4b0-28ef6f6097a7.jpg",
-      },
-      {
-        id: 2,
-        name: "IPhone 13 pro",
-        price: 35343,
-        rating: 4,
-        img: "../../../server/static/04b23981-ac64-4bb5-b4b0-28ef6f6097a7.jpg",
-      },
-      {
-        id: 3,
-        name: "IPhone 11 pro",
-        price: 15343,
-        rating: 3,
-        img: "../../../server/static/04b23981-ac64-4bb5-b4b0-28ef6f6097a7.jpg",
-      },
-      {
-        id: 4,
-        name: "IPhone 11 pro",
-        price: 15343,
-        rating: 3,
-        img: "../../../server/static/04b23981-ac64-4bb5-b4b0-28ef6f6097a7.jpg",
-      },
-      {
-        id: 5,
-        name: "IPhone 11 pro",
-        price: 15343,
-        rating: 3,
-        img: "../../../server/static/04b23981-ac64-4bb5-b4b0-28ef6f6097a7.jpg",
-      },
-    ];
+    this._types = [];
+    this._brands = [];
+    this._devices = [];
     this._selectedType = {};
     this._selectedBrand = {};
+    this._page = 1;
+    this._totalCount = 0;
+    this._limit = 3;
     makeAutoObservable(this);
   }
 
@@ -68,6 +28,12 @@ export default class DeviceStore {
   setSelectedBrand(brand) {
     this._selectedBrand = brand;
   }
+  setPage(page) {
+    this._page = page;
+  }
+  setTotalCount(totalCount) {
+    this._totalCount = totalCount;
+  }
 
   get types() {
     return this._types;
@@ -83,5 +49,14 @@ export default class DeviceStore {
   }
   get selectedBrand() {
     return this._selectedBrand;
+  }
+  get page() {
+    return this._page;
+  }
+  get limit() {
+    return this._limit;
+  }
+  get totalCount() {
+    return this._totalCount;
   }
 }

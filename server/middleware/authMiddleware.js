@@ -1,18 +1,18 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = function (req, res, next) {
-  if (req.body === "OPTIONS") {
-    nest();
+  if (req.method === "OPTIONS") {
+    next();
   }
   try {
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.authorization.split(" ")[1]; // Bearer asfasnfkajsfnjk
     if (!token) {
-      res.status(401).json({ message: "Unauthorized" });
+      return res.status(401).json({ message: "Не авторизован" });
     }
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
-    res.user = decoded;
+    req.user = decoded;
     next();
-  } catch (error) {
-    res.status(401).json({ message: "Unauthorized" });
+  } catch (e) {
+    res.status(401).json({ message: "Не авторизован" });
   }
 };

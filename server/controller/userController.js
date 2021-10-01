@@ -19,7 +19,7 @@ class UserController {
     const user = await User.create({ email, role, password: hashedPassword });
     // const bascket =
     await Bascket.create({ userId: user.id });
-    authService.generateToken(user.id, email, role);
+    const token = authService.generateToken(user.id, email, role);
 
     return res.json({ token });
   }

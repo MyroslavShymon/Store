@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { observer } from "mobx-react-lite";
 import { Context } from "..";
-import { Card, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import DeviceItem from "./DeviceItem";
 
-const DevicesList = () => {
+const DevicesList = observer(() => {
   const { devices } = useContext(Context);
 
   return (
@@ -14,6 +14,6 @@ const DevicesList = () => {
       ))}
     </Row>
   );
-};
+});
 
 export default DevicesList;

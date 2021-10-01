@@ -9,7 +9,11 @@ const DeviceItem = ({ device }) => {
   return (
     <Col md={3} onClick={() => history.push(DEVICE_ROUTE + "/" + device.id)}>
       <Card style={{ width: 150, cursor: "pointer" }} border={"light"}>
-        <Image width={150} height={150} src={device.img} />
+        <Image
+          width={150}
+          height={150}
+          src={"http://localhost:7000/" + device.img}
+        />
         <div
           className="d-flex text-black-50"
           style={{ flexDirection: "column" }}
